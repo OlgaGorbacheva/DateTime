@@ -77,10 +77,20 @@ istream & operator>> (istream &cin, Date &_date)
     int x;
     cin >> x; _date.year = x;
     cin >> x; _date.month = x - 1;
+    if (x > 12 || x < 0)
+        throw "unexpectable data";
     cin >> x; _date.day = x;
+    if ((x > _date.MDays[_date.month] || (_date.isLeap() && _date.month == 1 && x > _date.MDays[_date.month]+1))|| x < 0)
+        throw "unexpectable data";
     cin >> x; _date.hour = x;
+    if (x > 23 || x < 0)
+        throw "unexpectable data";
     cin >> x; _date.minute = x;
+    if (x > 59 || x < 0)
+        throw "unexpectable data";
     cin >> x; _date.second = x;
+    if (x > 59 || x < 0)
+        throw "unexpectable data";
     return cin;
 }
 
